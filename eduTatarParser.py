@@ -24,28 +24,24 @@ with requests.Session() as s:
 	
 	soup = BeautifulSoup(r.text, 'html.parser')
 
-	encodedBytes = base64.b64encode(str(soup).encode("utf-8"))
-	encodedStr = str(encodedBytes, "utf-8")
-	print(encodedStr)
+	t = soup.find("table").findAll('tr')
 
-# 	t = soup.find("table").findAll('tr')
+	for index, d in enumerate(t):
+		day = d.findChild().find('span')
+		if day and day.text == currentDay:
 
-# 	for index, d in enumerate(t):
-# 		day = d.findChild().find('span')
-# 		if day and day.text == currentDay:
+			for i in range(0, 8):
+				subj = t[index + i].find('td', {'class': 'tt-subj'}).text.strip()
+				task = t[index + i].find('td', {'class': 'tt-task'}).text.strip()
+				if subj:
+					homework.append([subj, task])
 
-# 			for i in range(0, 8):
-# 				subj = t[index + i].find('td', {'class': 'tt-subj'}).text.strip()
-# 				task = t[index + i].find('td', {'class': 'tt-task'}).text.strip()
-# 				if subj:
-# 					homework.append([subj, task])
+st = 'Домашняя работа на {}\n'.format(currentDay)
+st += '\n\n'.join(['{}: {}'.format(h[0], h[1]) for h in homework])
 
-# st = 'Домашняя работа на {}\n'.format(currentDay)
-# st += '\n\n'.join(['{}: {}'.format(h[0], h[1]) for h in homework])
-
-# encodedBytes = base64.b64encode(st.encode("utf-8"))
-# encodedStr = str(encodedBytes, "utf-8")
-# print(encodedStr)
+encodedBytes = base64.b64encode(st.encode("utf-8"))
+encodedStr = str(encodedBytes, "utf-8")
+print(encodedStr)
 
 
 
