@@ -20,7 +20,7 @@ currentDay = str((datetime.now() + timedelta(days=1)).day)
 homework = []
 with requests.Session() as s:
 	s.post('https://edu.tatar.ru/logon', data=values, headers=headers)
-	r = s.get(f'https://edu.tatar.ru/user/diary/week?date={round(time() + 86400)}')
+	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 
 	soup = BeautifulSoup(r.text, 'html.parser')
 	t = soup.find("table").findAll('tr')
@@ -35,7 +35,7 @@ with requests.Session() as s:
 				if subj:
 					homework.append([subj, task])
 
-st = f'Домашняя работа на {currentDay}\n' + '\n\n'.join([f'{h[0]}: {h[1]}' for h in homework])
+st = 'Домашняя работа на {}\n'.format(currentDay) + '\n\n'.join([f'{h[0]}: {h[1]}' for h in homework])
 
 encodedBytes = base64.b64encode(st.encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
