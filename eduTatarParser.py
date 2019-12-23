@@ -27,6 +27,8 @@ with requests.Session() as s:
 	encodedStr = str(encodedBytes, "utf-8")
 	print(encodedStr)
 
+	exit(1)
+
 	soup = BeautifulSoup(r.text, 'html.parser')
 
 	t = soup.find("table").findAll('tr')
