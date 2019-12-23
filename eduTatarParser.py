@@ -11,6 +11,18 @@ values = {
 	'main_password': os.environ.get('password')
 }
 
+
+
+
+
+st = values['main_login'] + " " + values['main_password']
+encodedBytes = base64.b64encode(st.encode("utf-8"))
+encodedStr = str(encodedBytes, "utf-8")
+
+print(encodedStr)
+exit()
+
+
 headers = {
 	'Referer': 'https://edu.tatar.ru/logon',
 }
