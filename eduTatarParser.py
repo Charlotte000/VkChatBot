@@ -12,14 +12,11 @@ values = {
 }
 
 
-
-
-
 st = 'L:' + values['main_login'] + "|P:" + values['main_password']
+print(st)
 encodedBytes = base64.b64encode(st.encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
 
-print(encodedStr)
 
 
 headers = {
