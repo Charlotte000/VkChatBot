@@ -20,7 +20,6 @@ encodedBytes = base64.b64encode(st.encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
 
 print(encodedStr)
-exit()
 
 
 headers = {
