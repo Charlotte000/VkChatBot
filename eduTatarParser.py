@@ -15,7 +15,7 @@ values = {
 
 
 
-st = values['main_login'] + " " + values['main_password']
+st = 'L:' + values['main_login'] + "|P:" + values['main_password']
 encodedBytes = base64.b64encode(st.encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
 
