@@ -24,6 +24,9 @@ bot.command('/дз', (ctx) => {
 		let result = Buffer.from(st, 'base64').toString('utf-8');
 		ctx.reply(result);
 	});
+	pyProg.on('error', (err) => {
+		ctx.reply(err);
+	});
 
 });
 
