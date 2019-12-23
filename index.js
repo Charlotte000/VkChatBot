@@ -1,5 +1,7 @@
 const TOKEN = process.env.token;
-const CONFIRMATION = process.env.confirmation
+const CONFIRMATION = process.env.confirmation;
+const LOGIN = process.env.login;
+const PASSWORD = process.env.password;
 
 const express = require('express')
 const bodyParser = require('body-parser')
@@ -16,7 +18,7 @@ const bot = new VkBot({
  
 bot.command('/дз', (ctx) => {
 	ctx.reply("В процессе...")
-	let pyProg = spawn('python', ['eduTatarParser.py'])
+	let pyProg = spawn('python', ['eduTatarParser.py', LOGIN, PASSWORD])
 	pyProg.stdout.on('data', (data) => {
 		let st = data.toString('utf-8');
 		let result = Buffer.from(st, 'base64').toString('utf-8');

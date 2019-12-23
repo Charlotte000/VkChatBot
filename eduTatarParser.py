@@ -4,11 +4,11 @@ from datetime import datetime, timedelta
 from time import time
 
 import base64
-import os
+import sys
 
 values = {
-	'main_login': os.environ.get('login'),
-	'main_password': os.environ.get('password')
+	'main_login': sys.argv[1],
+	'main_password': sys.argv[2]
 }
 
 headers = {
