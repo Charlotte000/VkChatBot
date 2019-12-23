@@ -24,8 +24,13 @@ bot.command('/дз', (ctx) => {
 		let result = Buffer.from(st, 'base64').toString('utf-8');
 		ctx.reply(result);
 	});
+	pyProg.stderr.on('data', (data) => {
+		console.log(data);
+		ctx.reply(data.toString());
+	});
 	pyProg.on('error', (err) => {
-		ctx.reply(err);
+		console.log(err);
+		ctx.reply(err.toString());
 	});
 
 });
