@@ -21,6 +21,12 @@ homework = []
 with requests.Session() as s:
 	s.post('https://edu.tatar.ru/logon', data=values, headers=headers)
 	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
+	
+
+	encodedBytes = base64.b64encode(r.text.encode("utf-8"))
+	encodedStr = str(encodedBytes, "utf-8")
+	print(encodedStr)
+
 	soup = BeautifulSoup(r.text, 'html.parser')
 
 	t = soup.find("table").findAll('tr')
@@ -35,11 +41,11 @@ with requests.Session() as s:
 				if subj:
 					homework.append([subj, task])
 
-st = 'Домашняя работа на {}\n'.format(currentDay) + '\n\n'.join([f'{h[0]}: {h[1]}' for h in homework])
+st = 'Домашняя работа на {}\n'.format(currentDay)
+st += '\n\n'.join(['{}: {}'.format(h[0], h[1]) for h in homework])
 
 encodedBytes = base64.b64encode(st.encode("utf-8"))
 encodedStr = str(encodedBytes, "utf-8")
-
 print(encodedStr)
 
 
