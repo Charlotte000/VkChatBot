@@ -23,11 +23,6 @@ with requests.Session() as s:
 	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 	soup = BeautifulSoup(r.text, 'html.parser')
 
-	st = r.text + " " + str(soup)
-	encodedBytes = base64.b64encode(st.encode("utf-8"))
-	encodedStr = str(encodedBytes, "utf-8")
-	print(encodedStr)
-	
 	t = soup.find("table").findAll('tr')
 
 	for index, d in enumerate(t):
