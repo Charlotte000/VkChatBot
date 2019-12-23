@@ -1,7 +1,6 @@
 const TOKEN = process.env.token;
 const CONFIRMATION = process.env.confirmation
 
-
 const express = require('express')
 const bodyParser = require('body-parser')
 const VkBot = require('node-vk-bot-api')
