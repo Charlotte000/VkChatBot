@@ -22,13 +22,11 @@ with requests.Session() as s:
 	s.post('https://edu.tatar.ru/logon', data=values, headers=headers)
 	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 	
+ 	soup = BeautifulSoup(r.text, 'html.parser')
 
-	encodedBytes = base64.b64encode(r.text.encode("utf-8"))
+	encodedBytes = base64.b64encode(str(soup).encode("utf-8"))
 	encodedStr = str(encodedBytes, "utf-8")
 	print(encodedStr)
-
-
-# 	soup = BeautifulSoup(r.text, 'html.parser')
 
 # 	t = soup.find("table").findAll('tr')
 
