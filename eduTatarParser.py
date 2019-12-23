@@ -11,14 +11,6 @@ values = {
 	'main_password': os.environ.get('password')
 }
 
-
-st = 'L:' + values['main_login'] + "|P:" + values['main_password']
-print(st)
-encodedBytes = base64.b64encode(st.encode("utf-8"))
-encodedStr = str(encodedBytes, "utf-8")
-
-
-
 headers = {
 	'Referer': 'https://edu.tatar.ru/logon',
 }
@@ -30,6 +22,13 @@ with requests.Session() as s:
 	s.post('https://edu.tatar.ru/logon', data=values, headers=headers)
 	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 
+	st = r
+
+	encodedBytes = base64.b64encode(st.encode("utf-8"))
+	encodedStr = str(encodedBytes, "utf-8")
+
+	print(encodedStr)
+	
 	soup = BeautifulSoup(r.text, 'html.parser')
 	t = soup.find("table").findAll('tr')
 
