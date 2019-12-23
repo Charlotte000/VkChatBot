@@ -32,4 +32,4 @@ app.use(bodyParser.json())
  
 app.post('/', bot.webhookCallback)
  
-app.listen(80, () => console.log("Start!"))
+app.listen(process.env.PORT || 8000, () => console.log("Start!"))
