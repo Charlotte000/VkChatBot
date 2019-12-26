@@ -31,7 +31,7 @@ with requests.Session() as s:
 				if subj:
 					homework.append([subj, task])
 
-st = 'Домашняя работа на {} число\n'.format(currentDay)
+st = 'Домашняя работа на {} число:\n\n'.format(currentDay)
 st += '\n'.join(['{}: {}'.format(h[0], h[1]) for h in homework])
 
 encodedBytes = base64.b64encode(st.encode("utf-8"))

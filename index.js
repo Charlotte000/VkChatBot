@@ -18,7 +18,6 @@ const bot = new VkBot({
 })
  
 bot.command('/дз', (ctx) => {
-	ctx.reply("В процессе...")
 	let pyProg = spawn('python', ['eduTatarParser.py', DNSID])
 	pyProg.stdout.on('data', (data) => {
 		let st = data.toString('utf-8');
