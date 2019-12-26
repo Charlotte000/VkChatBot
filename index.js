@@ -34,9 +34,6 @@ bot.command('/дз', (ctx) => {
 
 });
 
-bot.on((ctx) => {
-	ctx.reply(ctx.message.body);
-})
 app.use(bodyParser.json())
  
 app.post('/', bot.webhookCallback)
