@@ -6,11 +6,6 @@ from time import time
 import base64
 import sys
 
-values = {
-	'main_login': sys.argv[1],
-	'main_password': sys.argv[2]
-}
-
 headers = {
 	'Referer': 'https://edu.tatar.ru/logon',
 }
@@ -19,7 +14,7 @@ currentDay = str((datetime.now() + timedelta(days=1)).day)
 
 homework = []
 with requests.Session() as s:
-	s.post('https://edu.tatar.ru/logon', data=values, headers=headers)
+	s.cookies['DNSID'] = sys.argv[1]
 	r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 	
 	soup = BeautifulSoup(r.text, 'html.parser')
