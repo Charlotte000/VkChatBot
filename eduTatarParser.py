@@ -55,7 +55,6 @@ currentDay = str((datetime.now() + timedelta(days=1)).day)
 homework = []
 with requests.Session() as s:
 	register(s)
-	print("registered")
 	r = getInformation(s)
 	
 	soup = BeautifulSoup(r.text, 'html.parser')
