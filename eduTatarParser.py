@@ -34,7 +34,7 @@ def register(session):
 def getInformation(session):
 	while True:
 		try:
-			r = s.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
+			r = session.get('https://edu.tatar.ru/user/diary/week?date={}'.format(str(round(time() + 86400))))
 			if r.status_code == 200:
 				return r
 		except:
