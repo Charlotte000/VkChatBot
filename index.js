@@ -17,6 +17,7 @@ const bot = new VkBot({
 })
  
 bot.command('/дз', (ctx) => {
+	ctx.reply("Загрузка...");
 	let pyProg = spawn('python', ['eduTatarParser.py', LOGIN, PASSWORD])
 	pyProg.stdout.on('data', (data) => {
 		let st = data.toString('utf-8');
