@@ -22,9 +22,7 @@ bot.command('/дз', (ctx) => {
 		let st = data.toString('utf-8');
 		let result = Buffer.from(st, 'base64').toString('utf-8');
 		ctx.reply(result);
-	});
-	pyProg.stderr.on('data', (data) => {
-		ctx.reply(data.toString());
+		pyProg.kill('SIGINT')
 	});
 	pyProg.on('error', (err) => {
 		ctx.reply(err.toString());
